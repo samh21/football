@@ -1,0 +1,32 @@
+button {
+  width: 100%;
+}
+
+span {
+  display: inline-block;
+  font-size: 12px;
+  width: 14px;
+  color: white;
+  height: 14px;
+  padding: 3px;
+  margin: 1px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+
+span.W {
+  background-color: green;
+}
+
+span.D {
+  background-color: rgb(105, 105, 105);
+}
+
+span.L {
+  background-color: rgb(196, 9, 9);
+}
+
+.teamForm {
+  display: flex;
+}
