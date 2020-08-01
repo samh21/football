@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import WLD from './WLD';
+import Row from './Row';
 
 const tableStyle = makeStyles({
   tableStyle: {
@@ -28,41 +28,22 @@ function LeagueTable({ clubData }) {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell>Team</TableCell>
-            <TableCell align="right">Played</TableCell>
-            <TableCell align="right">Won</TableCell>
-            <TableCell align="right">Drawn</TableCell>
-            <TableCell align="right">Lost</TableCell>
-            <TableCell align="right">For</TableCell>
-            <TableCell align="right">Against</TableCell>
-            <TableCell align="right">GD</TableCell>
-            <TableCell align="right">Points</TableCell>
-            <TableCell align="right">Form</TableCell>
+            <TableCell align="center"></TableCell>
+            <TableCell align="center">Team</TableCell>
+            <TableCell align="center">Played</TableCell>
+            <TableCell align="center">Won</TableCell>
+            <TableCell align="center">Drawn</TableCell>
+            <TableCell align="center">Lost</TableCell>
+            <TableCell align="center">For</TableCell>
+            <TableCell align="center">Against</TableCell>
+            <TableCell align="center">GD</TableCell>
+            <TableCell align="center">Points</TableCell>
+            <TableCell align="center">Form</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {clubData.map((team) => (
-            <TableRow key={team.team_id}>
-              <TableCell>{team.rank}</TableCell>
-              <TableCell>{team.teamName}</TableCell>
-              <TableCell align="right">{team.all.matchsPlayed}</TableCell>
-              <TableCell align="right">{team.all.win}</TableCell>
-              <TableCell align="right">{team.all.draw}</TableCell>
-              <TableCell align="right">{team.all.lose}</TableCell>
-              <TableCell align="right">{team.all.goalsFor}</TableCell>
-              <TableCell align="right">{team.all.goalsAgainst}</TableCell>
-              <TableCell align="right">
-                {team.all.goalsFor - team.all.goalsAgainst}
-              </TableCell>
-              <TableCell align="right">{team.points}</TableCell>
-              <TableCell align="right">
-                <div className="teamForm">
-                  {team.forme.split('').map((result, i) => (
-                    <WLD key={i} result={result}></WLD>
-                  ))}
-                </div>
-              </TableCell>
-            </TableRow>
+            <Row key={team.team_id} row={team}></Row>
           ))}
         </TableBody>
       </Table>
