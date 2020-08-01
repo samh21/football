@@ -1,119 +1,77 @@
 import React, { useState, Fragment } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
 import Box from '@material-ui/core/Box';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Collapse from '@material-ui/core/Collapse';
-import TableBody from '@material-ui/core/TableBody';
-
 import WLD from './WLD';
 
-const customColumnStyle = { Width: '5px', backgroundColor: 'brown' };
-
-const tableStyle = makeStyles({
-  tableStyle: {
-    minWidth: 850,
-  },
-});
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-const StyledTableCell = withStyles((theme) => ({
-  root: {
-    padding: '1px 2px',
-    textAlign: 'center',
-  },
-}))(TableCell);
-
 function Row({ row }) {
-  const [collapse, setCollapse] = useState(true);
+  const [collapse, setCollapse] = useState(false);
 
   return (
     <Fragment>
-      <StyledTableRow>
-        <StyledTableCell style={customColumnStyle}></StyledTableCell>
-        <StyledTableCell>{row.rank}</StyledTableCell>
-        <StyledTableCell>{row.teamName}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.matchsPlayed}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.win}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.draw}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.lose}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.goalsFor}</StyledTableCell>
-        <StyledTableCell align="right">{row.all.goalsAgainst}</StyledTableCell>
-        <StyledTableCell align="right">
-          {row.all.goalsFor - row.all.goalsAgainst}
-        </StyledTableCell>
-        <StyledTableCell align="right">{row.points}</StyledTableCell>
-        <StyledTableCell align="right">
-          <div className="teamForm">
-            {row.forme.split('').map((result, i) => (
-              <WLD key={i} result={result}></WLD>
-            ))}
-          </div>
-        </StyledTableCell>
-      </StyledTableRow>
-      <StyledTableRow style={{ padding: 0, margin: 0 }}>
-        <StyledTableCell style={{ padding: 0, margin: 0 }} colSpan={12}>
-          <Collapse in={true}>
-            <Box margin={0}>
-              <Table
-                className={tableStyle.tableStyle}
-                size="small"
-                aria-label="a dense table"
-              >
-                <TableBody>
-                  <StyledTableRow>
-                    <StyledTableCell
-                      style={customColumnStyle}
-                    ></StyledTableCell>
-                    <StyledTableCell>{row.rank}</StyledTableCell>
-                    <StyledTableCell>{row.teamName}</StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.matchsPlayed}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.win}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.draw}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.lose}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.goalsFor}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.goalsAgainst}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.all.goalsFor - row.all.goalsAgainst}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.points}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      <div className="teamForm">
-                        {row.forme.split('').map((result, i) => (
-                          <WLD key={i} result={result}></WLD>
-                        ))}
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </StyledTableCell>
-      </StyledTableRow>
+      <Box style={{ borderBottom: '1px solid rgb(216, 216, 216)' }}>
+        <Box className="grid">
+          <Box>
+            <IconButton size="small" onClick={() => setCollapse(!collapse)}>
+              {collapse ? (
+                <KeyboardArrowUpIcon style={{ color: 'gray' }} />
+              ) : (
+                <KeyboardArrowDownIcon style={{ color: 'gray' }} />
+              )}
+            </IconButton>
+          </Box>
+          <Box>{row.rank}</Box>
+          <Box>{row.teamName}</Box>
+          <Box>{row.all.matchsPlayed}</Box>
+          <Box>{row.all.win}</Box>
+          <Box>{row.all.draw}</Box>
+          <Box>{row.all.lose}</Box>
+          <Box className="desktopView">{row.all.goalsFor}</Box>
+          <Box className="desktopView">{row.all.goalsAgainst}</Box>
+          <Box>{row.all.goalsFor - row.all.goalsAgainst}</Box>
+          <Box>{row.points}</Box>
+          <Box className="showForm">
+            <div className="teamForm">
+              {row.forme.split('').map((result, i) => (
+                <WLD key={i} result={result}></WLD>
+              ))}
+            </div>
+          </Box>
+        </Box>
+
+        <Collapse in={collapse} timeout={600} unmountOnExit>
+          <Box className="grid">
+            <Box></Box>
+            <Box></Box>
+            <Box>Home</Box>
+            <Box>{row.home.matchsPlayed}</Box>
+            <Box>{row.home.win}</Box>
+            <Box>{row.home.draw}</Box>
+            <Box>{row.home.lose}</Box>
+            <Box className="desktopView">{row.home.goalsFor}</Box>
+            <Box className="desktopView">{row.home.goalsAgainst}</Box>
+            <Box>{row.home.goalsFor - row.home.goalsAgainst}</Box>
+            <Box></Box>
+            <Box></Box>
+          </Box>
+          <Box className="grid">
+            <Box></Box>
+            <Box></Box>
+            <Box>Away</Box>
+            <Box>{row.away.matchsPlayed}</Box>
+            <Box>{row.away.win}</Box>
+            <Box>{row.away.draw}</Box>
+            <Box>{row.away.lose}</Box>
+            <Box className="desktopView">{row.away.goalsFor}</Box>
+            <Box className="desktopView">{row.away.goalsAgainst}</Box>
+            <Box>{row.away.goalsFor - row.away.goalsAgainst}</Box>
+            <Box></Box>
+            <Box></Box>
+          </Box>
+        </Collapse>
+      </Box>
     </Fragment>
   );
 }

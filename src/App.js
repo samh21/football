@@ -33,7 +33,7 @@ function App() {
   });
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <LeagueTable clubData={clubData}></LeagueTable>
     </Container>
   );

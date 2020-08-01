@@ -30,3 +30,59 @@ span.L {
 .teamForm {
   display: flex;
 }
+
+.gridHead {
+  background-color: rgb(235, 235, 235);
+  font-size: small;
+  font-weight: 500;
+  font-family: 'roboto', sans-serif;
+  padding: 8px 0;
+  display: inline-grid;
+  width: 100%;
+  grid-template-columns: 4% 4% 20% repeat(8, 7%) 1fr;
+}
+
+.grid {
+  align-items: center;
+  font-family: 'roboto', sans-serif;
+  font-weight: 400;
+  font-size: small;
+  padding: 1px 0;
+  display: inline-grid;
+  width: 100%;
+  grid-template-columns: 4% 4% 20% repeat(8, 7%) 1fr;
+}
+
+.mobileView {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .showForm {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: 4% 4% 1fr repeat(8, 9%);
+  }
+  .gridHead {
+    grid-template-columns: 4% 4% 1fr repeat(8, 9%);
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .showForm {
+    display: none;
+  }
+  .grid {
+    grid-template-columns: 6% 6% 1fr repeat(6, 9%);
+  }
+  .gridHead {
+    grid-template-columns: 6% 6% 1fr repeat(6, 9%);
+  }
+  .desktopView {
+    display: none;
+  }
+  .mobileView {
+    display: inline-block;
+  }
+}
