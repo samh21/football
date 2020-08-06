@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function useFetchData(url) {
+const leagueNames = require('./dummyLeagueData.json');
+
+export default function useFetchData(url, api_key) {
   const [status, setStatus] = useState('idle');
   const [data, setData] = useState([]);
 
@@ -14,19 +16,52 @@ export default function useFetchData(url) {
       try {
         const response = await axios(url, {
           headers: {
-            'x-rapidapi-key':
-              '0352edca8bmshf62087d63a1a56bp144deejsnc0f05c2056ec',
+            'x-rapidapi-key': api_key,
           },
         });
-        // setData(response.data.api.standings[0]);
+
         setData(
-          response.data.api.leagues.filter((league) => league.type === 'League')
+          response.data.api.leagues
+            .filter((league) => league.type === 'League')
+            .filter((league) => league.type === 'League')
+            .filter((league) => league.standings !== 0)
+            .filter((league) => league.is_current === 1)
+            .map((league) => {
+              return {
+                name: league.name,
+                id: league.league_id,
+                flag: league.flag,
+                country: league.country,
+              };
+            })
         );
       } catch (error) {
         setStatus('idle');
       }
     };
 
+    const loadDummyData = () => {
+      setData(
+        leagueNames
+          .filter((league) => league.type === 'League')
+          .filter((league) => league.type === 'League')
+          .filter((league) => league.standings !== 0)
+          .filter((league) => league.is_current === 1)
+          .map((league) => {
+            return {
+              name: league.name,
+              id: league.league_id,
+              flag: league.flag,
+              country: league.country,
+            };
+          })
+      );
+    };
+
+    // load from dummy data file
+    // loadDummyData();
+
+    // load from live API
     fetchData();
   }, [url]);
 

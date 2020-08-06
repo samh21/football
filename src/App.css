@@ -1,3 +1,14 @@
+html,
+body {
+  margin: 0;
+  padding: 0px;
+  background-color: rgb(239, 253, 255);
+}
+
+body {
+  padding: 20px 0;
+}
+
 button {
   width: 100%;
 }
@@ -55,6 +66,16 @@ span.L {
 
 .mobileView {
   display: none;
+}
+
+.wrapper {
+  position: relative;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.leagueHeader {
+  text-align: center;
 }
 
 @media screen and (max-width: 750px) {

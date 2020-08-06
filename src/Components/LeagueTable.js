@@ -3,9 +3,13 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Row from './Row';
 
-function LeagueTable({ clubData }) {
+function LeagueTable({ clubData, league }) {
   return (
     <Fragment>
+      <div className="leagueHeader">
+        <h1>{league.name}</h1>
+        <h2>{league.country}</h2>
+      </div>
       <Paper>
         <Box className="gridHead">
           <Box></Box>

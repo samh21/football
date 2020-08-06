@@ -9,6 +9,8 @@ import WLD from './WLD';
 function Row({ row }) {
   const [collapse, setCollapse] = useState(false);
 
+  if (row === null) return <Fragment></Fragment>;
+
   return (
     <Fragment>
       <Box style={{ borderBottom: '1px solid rgb(216, 216, 216)' }}>
@@ -34,9 +36,10 @@ function Row({ row }) {
           <Box>{row.points}</Box>
           <Box className="showForm">
             <div className="teamForm">
-              {row.forme.split('').map((result, i) => (
-                <WLD key={i} result={result}></WLD>
-              ))}
+              {row.forme &&
+                row.forme
+                  .split('')
+                  .map((result, i) => <WLD key={i} result={result}></WLD>)}
             </div>
           </Box>
         </Box>
