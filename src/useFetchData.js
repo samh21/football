@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function useFetchData(url, api_key) {
   const [data, setData] = useState([]);
+  console.log(api_key);
 
   useEffect(() => {
     if (!url) return;
