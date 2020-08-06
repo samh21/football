@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LeagueTable from './Components/LeagueTable';
 import useFetchData from './useFetchData';
 import Search from './Components/Search';
@@ -20,7 +19,6 @@ function App() {
     name: 'Premier League',
     country: 'England',
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -35,10 +33,8 @@ function App() {
           }
         );
         setLeagueData(res.data.api.standings[0]);
-        setLoading(false);
       } catch (error) {
         setLeagueData([]);
-        setLoading(false);
       }
     };
 
@@ -48,11 +44,7 @@ function App() {
   return (
     <Container maxWidth="lg">
       <div className="wrapper">
-        <Search
-          setLoading={setLoading}
-          setLeague={setLeague}
-          data={data}
-        ></Search>
+        <Search setLeague={setLeague} data={data}></Search>
       </div>
       {leagueData && (
         <LeagueTable clubData={leagueData} league={league}></LeagueTable>

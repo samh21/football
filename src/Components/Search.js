@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import '../Search.css';
 
-function Search({ data, setLeague, setLoading }) {
+function Search({ data, setLeague }) {
   const [searchStr, setSearchStr] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -31,7 +31,6 @@ function Search({ data, setLeague, setLoading }) {
   };
 
   const handleClick = (id, name, country) => {
-    setLoading(true);
     setLeague({ id, name, country });
     setSearchStr('');
     setSuggestions([]);
