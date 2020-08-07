@@ -44,7 +44,7 @@ function Search({ data, setLeague }) {
           className="searchBox"
           type="text"
           name="search"
-          placeholder="Search for a football league"
+          placeholder="Search football leagues from around the world"
           value={searchStr}
           onChange={onTextChange}
         />
@@ -60,7 +60,6 @@ function Search({ data, setLeague }) {
             >
               <div>
                 <div> {league.name}</div>
-                <div>{league.country}</div>
                 <img src={league.flag} alt="" />
               </div>
             </li>
