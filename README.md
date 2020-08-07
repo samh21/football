@@ -1,4 +1,4 @@
-# Flags-of-the-world App
+# Football Leagues App
 
 Single page application that gives thes user the option to search for any football league in the world. Results show the standings from the 2019/2020 seasons.
 
