@@ -20,3 +20,9 @@ Single page application that gives thes user the option to search for any footba
 ### Setup
 
 '.env' file needed in the root of the application with your RAPIDAPI key. Copy the structure of the 'sample .env' file
+
+---
+
+### Live Site
+
+https://footballleagues.netlify.app
