@@ -23,7 +23,6 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        console.log('fetching');
         const res = await axios(
           `https://api-football-v1.p.rapidapi.com/v2/leagueTable/${league.id}`,
           {
